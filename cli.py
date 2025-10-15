@@ -122,7 +122,7 @@ def process_user_command(
 
 def main():
     """Main program loop."""
-display_welcome()    
+    display_welcome()    
     # Display welcome message
     # TODO: Call the function to display the welcome message
 
