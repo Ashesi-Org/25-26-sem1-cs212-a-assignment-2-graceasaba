@@ -147,7 +147,7 @@ def find_files_by_extension(directory, extension, current_path=""):
         # TODO: remove the pass statement below, only added to avoid syntax error
         return []
 
-    found_files = []
+    found_files = [] 
     # TODO: Initialize found_files as an empty list
 
     try:
@@ -165,6 +165,8 @@ def find_files_by_extension(directory, extension, current_path=""):
             elif os.path.isdir(item_path):
                 # Recursive case: Search in subdirectory
                 sub_path = os.path.join(current_path, item) if current_path else item
+                list_directory_tree(item_path, next_prefix, max_depth, current_depth + 1)
+                found_files.extend(find_files_by_extension(item_path, extension, sub_path))
                 # TODO recursively call find_files_by_extension
                 # TODO: Extend found_files with results from recursive call
                
