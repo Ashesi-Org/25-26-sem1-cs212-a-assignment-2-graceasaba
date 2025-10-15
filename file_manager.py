@@ -87,11 +87,13 @@ def list_directory_tree(directory, prefix="", max_depth=3, current_depth=0):
     # Base case 1: Invalid directory
     if not os.path.isdir(directory):
         print(f"Error: '{directory}' is not a valid directory.")
+        return None
         # TODO: return None for the base case
 
     # Base case 2: Maximum depth reached
     if current_depth >= max_depth:
         print(f"{prefix}... (max depth reached)")
+        return None
         # TODO: return None for yet another base case
 
     try:
@@ -101,6 +103,7 @@ def list_directory_tree(directory, prefix="", max_depth=3, current_depth=0):
         # Base case 3: Empty directory
         if not items:
             print(f"{prefix}(empty directory)")
+            return None
             # TODO: return None for yet another base case
 
         for i, item in enumerate(items):
@@ -126,6 +129,7 @@ def list_directory_tree(directory, prefix="", max_depth=3, current_depth=0):
             elif os.path.isdir(item_path):
                 # Display directory and recurse
                 print(f"{current_prefix}{item}/")
+                found_files.extend(find_files_by_extension(item_path, extension, sub_path))
                 # Recursive case: explore subdirectory
                 # TODO: perform recursive function call
 
@@ -141,8 +145,9 @@ def find_files_by_extension(directory, extension, current_path=""):
     if not os.path.isdir(directory):
         # TODO: return an empty list for the base case
         # TODO: remove the pass statement below, only added to avoid syntax error
-        pass
+        return []
 
+    found_files = []
     # TODO: Initialize found_files as an empty list
 
     try:
