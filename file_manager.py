@@ -41,8 +41,7 @@ def format_file_size(size_bytes, precision=2, use_binary=True):
     while size_bytes >= divisor and unit_index < len(units) - 1:
         size_bytes /= divisor
         unit_index +=1
-     #round  the size and join it with the unit name
-        formatted_size = str(round(size_bytes, precision)) + " " + units[unit_index]  
+    formatted_size = f"{size_bytes:.{precision}f} {units[unit_index]}"
     return formatted_size
 
 
@@ -135,10 +134,9 @@ def list_directory_tree(directory, prefix="", max_depth=3, current_depth=0):
             elif os.path.isdir(item_path):
                 # Display directory and recurse
                 print(f"{current_prefix}{item}/")
-                found_files.extend(find_files_by_extension(item_path, extension, sub_path))
                 # Recursive case: explore subdirectory
                 # TODO: perform recursive function call
-                list_directory_tree(item_path, next_prefix,max_depth, current_depth + 1)
+                list_directory_tree(item_path, next_prefix, max_depth, current_depth + 1)
     except (OSError, PermissionError) as e:
         print(f"{prefix}Error accessing directory: {e}")
 
@@ -151,7 +149,6 @@ def find_files_by_extension(directory, extension, current_path=""):
     if not os.path.isdir(directory):
         # TODO: return an empty list for the base case
         return []
-        # TODO: remove the pass statement below, only added to avoid syntax error
  
     # TODO: Initialize found_files as an empty list
     found_files = []  
